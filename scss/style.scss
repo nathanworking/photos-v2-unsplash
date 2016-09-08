@@ -1,0 +1,15 @@
+@import 'bourbon'; // http://bourbon.io/
+
+// Partials
+	@import '../partials/fonts'; // font import file (sep because it's big/messy)...
+	@import '../partials/variables'; // colors, fonts etc...
+	@import '../partials/mixins'; // custom mixins
+	@import '../partials/layout'; // media queries
+
+// Base Styles
+	@import '../base/globals'; // global stuff like grids
+
+// Parts
+	@import '../parts/navigation'; // page transitions
+	@import '../parts/page-transition'; // smart navigation
+	@import '../parts/photo'; // photo grid & main photo styles

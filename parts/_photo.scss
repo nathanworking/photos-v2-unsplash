@@ -1,0 +1,139 @@
+
+/* Edits for styles on lightgallery plugin */
+  // These override the styles in the min.css file (purly styleistic) //
+
+.lg-backdrop {
+  background: rgba(0, 0, 0, .95)
+}
+
+.lg-outer .lg-img-wrap, .lg-outer .lg-item {
+    max-width: 100%;
+    height: 100%;
+    .lg-image {
+       max-width: 100%;
+       vertical-align: middle;
+       margin-top: 0;
+
+     }
+     .lg-item {
+       background: none;
+     }
+  }
+
+  .lg-actions .lg-next, .lg-actions .lg-prev, .lg-toolbar {
+    background: none;
+  }
+    .lg-actions {
+      .lg-prev:after {
+          content: 'Back';
+          right: -100px;
+          position: absolute;
+          top: 0;
+          font-family: $secondary-font;
+          color: $color-2;
+        }
+      .lg-next:before {
+          content: 'Next';
+          left: -60px;
+          position: absolute;
+          top: 50%;
+          font-family: $secondary-font;
+          color: $color-2;
+        }
+        //// Hiding these under larger desktop sizes because this isn't very user-friendly otherwise
+        @media (max-width: 1400px) {
+          .lg-next:before {
+            color: transparent;
+          }
+        }
+        @media (max-width: 1400px) {
+          .lg-prev:after {
+            color: transparent;
+          }
+        }
+    }
+
+  // Hidden box that holds content for photos
+    .lg-sub-html {
+      max-width: 850px;
+      margin: 0 auto 18.2% auto;
+      background: $color-1;
+      color: $color-2;
+      text-align: left;
+      padding-left: 1em;
+      p {
+        margin: 0;
+        font-size: 20px;
+      }
+      .photo-title {
+        margin-bottom: 0em;
+      }
+      .photo-description {
+        padding: 1em 0;
+        line-height: 1.5;
+      }
+      @media (max-height: 1250px) {
+        margin-bottom: 0;
+      }
+      @media (min-width: 1250px) {
+        margin: 0 auto 5% auto;
+      }
+    }
+/* Hide toolbar becuase I don't need these right now */
+  div.lg-toolbar.group{
+    display: none;
+  }
+
+
+
+
+  /// Edits to Photo grid view & lightbox view (after lightbox style overrides becuase these are even more specific)
+ .content {
+   display: flex;
+   flex-direction: column;
+   margin: 0 $left-margin-s;
+   .tile {
+     margin-top: 1em;
+     display: inline-block;
+     width: 100%;
+     &:hover {
+       opacity: 0.9;
+       transition: all 0.2s ease-in-out;
+     }
+     @include MQ(L) {
+       max-width: 620px;
+       height: auto;
+       margin-left: 20px;
+     }
+     .photo {
+       width: 100%;
+       @include MQ(L) {
+         max-width: 620px;
+         height: auto;
+       }
+     }
+   }
+   @include MQ(M) {
+     flex-wrap: wrap;
+     flex-direction: row;
+     margin: 0 $left-margin-m;
+   }
+   @include MQ(L) {
+     margin: 0 $left-margin-l 0 ($left-margin-l - 20);
+   }
+ }
+
+ @media screen and (max-width: 1430px) { // fix to make it work on all sizes
+   .content .photo,.content .tile {
+     width: 100% !important;
+     max-width: none !important;
+   }
+ }
+
+ .caption-box {
+   display: none;
+ }
+
+ .photo-description {
+   padding: 0.25em 0;
+ }

@@ -1,0 +1,260 @@
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+/* Because... Fun */
+@include selection {
+  background-color: $color-1;
+	color: $color-2;
+}
+
+/* Becuase I can't stand these */
+*:focus {
+  outline: none;
+}
+
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font: {
+		size: 1.6rem;
+		family: $secondary-font;
+	}
+	color: $color-1;
+	text-align: left;
+	@include font-smoothing;
+}
+
+
+.cd-btn {
+	display: inline-block;
+	padding: .5em 1.2em;
+	margin-bottom: 2em;
+	border-radius: 4px;
+	background-color: transparent;
+	color: $color-1;
+	border: 2px solid $color-1;
+	font-size: 18px;
+	letter-spacing: 1px;
+	box-shadow: 0 1px 4px rgba(#000, .1);
+	transition: color 0.2s, background-color 0.2s;
+
+	.no-touch &:hover {
+		background-color: $color-1;
+		color: $color-2;
+	}
+
+	&.active {
+		background-color: $color-1;
+		color: $color-2;
+		.no-touch &:hover {
+			background-color: transparent;
+			color: $color-1;
+		}
+	}
+
+}
+
+#photos .cd-main-content {
+	background-color: $color-2; // Fallback
+	background-image: linear-gradient( $color-4, $color-2);
+}
+
+
+main {
+	height: 100vh;
+	p {
+		margin-left: $left-margin-s;
+		margin-right: $left-margin-s;
+		line-height: 1.4;
+		font-size: 20px;
+		color: $color-3;
+	}
+	a {
+		color: $color-1;
+		text-decoration: none;
+	}
+
+	h1 {
+		color: $color-1;
+		margin-bottom: 10px;
+		padding: 20px 0 15px $left-margin-s;
+		font: {
+			size: 55px;
+			family: $primary-font;
+		}
+	}
+	h2 {
+		color: $color-1;
+		margin-bottom: 1em;
+		font: {
+			size: 45px;
+			family: $primary-font;
+		}
+	}
+	h3 {
+		color: $color-1;
+		margin-bottom: 1em;
+		font: {
+			size: 35px;
+			family: $primary-font;
+		}
+	}
+
+	@media screen and (max-width: 370px) { // fix for nav on really small devices
+		.cd-main-content {
+			padding-top: 55px;
+		}
+	}
+
+	@include MQ(M) {
+		.cd-main-content {
+			height: 100vh;
+		}
+
+		p {
+			margin-left: $left-margin-m;
+			margin-right: $left-margin-m;
+			max-width: 600px;
+		}
+
+		h1 {
+			padding-left: $left-margin-m;
+			padding-top: $left-margin-m;
+		}
+
+		&.cd-index > div {
+			padding-top: 200px;
+		}
+
+		&.cd-index > div {
+			padding-top: 50px;
+		}
+
+	}
+	@include MQ(L) {
+		.cd-main-content {
+			height: 100vh;
+		}
+
+		p {
+			margin-left: $left-margin-l;
+		}
+
+		h1 {
+			padding-left: $left-margin-l;
+			padding-top: $left-margin-l;
+		}
+
+	}
+}
+
+// super light grid - it works with the .cd-container class inside style.scss
+
+@mixin column($percentage, $float-direction:left) {
+  width: 100% * $percentage;
+  float: $float-direction;
+}
+
+
+/// SVG Icons (social sharing icons)
+
+.icon-box {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 15px auto 35px auto;
+	svg {
+		height: 26px;
+		opacity: 0.8;
+	}
+	@include MQ(M) {
+		margin-left: ($left-margin-m - 8);
+		max-width: 380px;
+		flex-direction: row;
+		svg {
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	@include MQ(L) {
+		margin-top: 40px;
+		margin-left: ($left-margin-l - 8);
+	}
+	.socials-box {
+		display: flex;
+		flex-direction: row;
+		margin: 0 auto;
+		@include MQ(M) {
+			margin: 0;
+		}
+		a {
+			&:nth-of-type(3) svg { // twitter
+				width: 31px;
+			}
+			&:nth-of-type(4) svg { // email
+				width: 32px;
+			}
+		}
+		svg {
+			width: 25px; // faceboook & instagram
+			margin: 15px 10px;
+		}
+	}
+
+	.unsplash-box {
+		margin: 0 auto;
+		@include MQ(M) {
+			display: flex;
+		}
+		hr {
+			width: 50px;
+			border-top: 1px solid transparentize($color-3, .5);
+			@include MQ(M){
+				border-top: none;
+				width: 1px;
+				height: 25px;
+				margin-right: 20px;
+				margin-top: 15px;
+				border-left: 1px solid transparentize($color-3, .5);
+			}
+		}
+
+		svg {
+			margin-top: 10px;
+			width: 137px;
+			height: 30px;
+		}
+	}
+}
+
+.filter-box {
+	display: flex;
+	justify-content: flex-start;
+	width: 284px;
+	margin: 0 auto;
+	text-align: center;
+	@include MQ(M) {
+		margin-left: $left-margin-m;
+	}
+	@include MQ(L) {
+		margin-left: $left-margin-l;
+	}
+	a {
+		margin-right: 10px;
+		&:last-of-type {
+			margin-right: 0px;
+		}
+	}
+}
